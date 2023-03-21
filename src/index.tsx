@@ -3,13 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import App from "./App";
-import { Favorites } from "./pages/Favorites";
+import FavoritesToggleColorMode, { Favorites } from "./pages/Favorites";
 import { CountryInfo } from "./pages/CountryInfo";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import { Header } from "./components/Header and Footer/Header";
-import { Footer } from "./components/Header and Footer/Footer";
+import AppToggleColorMode from "./App";
+
 
 
 const container = document.getElementById("root")!;
@@ -19,13 +18,11 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Header />
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="favourites" element={<Favorites />} />
+          <Route path="/" element={<AppToggleColorMode />} />
+          <Route path="favourites" element={<FavoritesToggleColorMode />} />
           <Route path="countryInfo/*" element={<CountryInfo />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

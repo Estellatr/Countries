@@ -6,15 +6,13 @@ import {
   IconButton,
   Typography,
   Button,
-  Link,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import { themeOptions } from "./theme";
+import { lightTheme } from "../../styling/theme";
 
 export const Footer = () => {
   return (
     <div>
-      <ThemeProvider theme={themeOptions}>
+      <ThemeProvider theme={lightTheme}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">
             <Toolbar>

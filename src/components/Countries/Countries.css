@@ -6,9 +6,8 @@
 }
 
 .table-info {
-    width: 90vw;
+    width: 95vw;
     border-collapse: collapse; 
-    color: #4a4e69 !important;
 }
 
 .table-head {
@@ -25,15 +24,21 @@
 }
 
 .search-bar {
-    margin-top: 2rem;
+    margin: 0.5rem
 }
 
 .flags img {
     max-width: 15rem !important;
 }
 
+.languages {
+    font-size: 1rem;
+    list-style-type: ' -   ';
+    list-style-position: inside;
+    padding: 0.7rem;
+}
+
 .more-info {
-    color: #22223b !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;

@@ -10,19 +10,30 @@ import {
   ThemeProvider,
   Toolbar,
   Typography,
+  Stack,
+  Badge,
 } from "@mui/material";
-import { themeOptions } from "./theme";
+import { useAppSelector } from "../../app/hooks";
+import ToggleColorMode from "../../App";
+import { darkTheme } from "../../styling/theme";
 
 export const Header = () => {
+  const countries = useAppSelector((state) => {
+    return state.countries;
+  });
+
+  const numberOfFavorites = countries.countries.filter(
+    (country) => country.isFavorite
+  ).length;
+
   return (
-    <ThemeProvider theme={themeOptions}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+      <Box sx={{ flexGrow: 1, bgcolor: "primary.main" }} >
+        <AppBar position="static" color="primary">
           <Toolbar>
             <IconButton
-              size="large"
+              size="small"
               edge="start"
-              color="inherit"
+              color="secondary"
               aria-label="menu"
               sx={{ mr: 2 }}
             >
@@ -34,14 +45,19 @@ export const Header = () => {
                 Countries
               </Link>
             </Typography>
-            <Button color="inherit">
+            <Button color="primary">
               <Link component={RouterLink} to="/favourites">
-                <FavoriteIcon />
+                <Stack spacing={2} direction="row">
+                  <Badge badgeContent={numberOfFavorites} color="secondary">
+                    <Box color="secondary.main">
+                    <FavoriteIcon />
+                    </Box>
+                  </Badge>
+                </Stack>
               </Link>
             </Button>
           </Toolbar>
         </AppBar>
       </Box>
-    </ThemeProvider>
   );
 };

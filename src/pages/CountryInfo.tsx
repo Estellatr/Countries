@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { fetchCountry } from "../redux/countrySlice";
 import { Country } from "../redux/countriesSlice";
 import { objectToStringArr } from "../components/Countries/Countries";
+import { Header } from "../components/Header and Footer/Header";
+import { Footer } from "../components/Header and Footer/Footer";
 
 export const CountryInfo = () => {
   const country: Country = useAppSelector<Country>((state) => {
@@ -33,6 +35,7 @@ export const CountryInfo = () => {
 
   return (
     <div>
+      <Header />
       <h1>Country Info</h1>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
@@ -96,6 +99,7 @@ export const CountryInfo = () => {
           {/* Add anything? */}
         </CardActions>
       </Card>
+      <Footer />
     </div>
   );
 };

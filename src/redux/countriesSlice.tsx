@@ -50,22 +50,16 @@ export const countriesSlice = createSlice({
   initialState,
   reducers: {
     favoriteCountry: (state, action) => {
-      // console.log("Action Payload");
-      // console.log(action.payload);
-
       let country: Country = state.countries.find(
         (country) => country.name.official == action.payload
       )!;
 
-      // console.log(current(country));
 
       if (country.isFavorite) {
         country.isFavorite = false;
       } else {
         country.isFavorite = true;
       }
-
-      // console.log(current(country));
     }
   },
   extraReducers: (builder) => {

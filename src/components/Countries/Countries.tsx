@@ -6,10 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Link } from "react-router-dom";
-import {
-  TextField,
-  ThemeProvider,
-} from "@mui/material";
+import { Box, TextField, ThemeProvider } from "@mui/material";
 import "./Countries.css";
 import Swal from "sweetalert2";
 import { themeOptions } from "../Countries/theme";
@@ -31,7 +28,12 @@ export const Countries = () => {
 
   // HANDLER FUNCTIONS
   const handleFavoriteClick = (id: String) => {
-    showAlert();
+    showAlertAdded();
+    dispatch(favoriteCountry(id));
+  };
+
+  const handleUnFavoriteClick = (id: String) => {
+    showAlertRemoved();
     dispatch(favoriteCountry(id));
   };
 
@@ -39,7 +41,7 @@ export const Countries = () => {
     setSearch(e.target.value.toLowerCase());
   };
 
-  const showAlert = () => {
+  const showAlertAdded = () => {
     Swal.fire({
       title: "Success",
       text: "Added to Favorites!",
@@ -49,6 +51,18 @@ export const Countries = () => {
       cancelButtonColor: "#9a8c98",
     });
   };
+
+  const showAlertRemoved = () => {
+    Swal.fire({
+      title: "Success",
+      text: "Removed from Favorites",
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#9a8c98",
+      cancelButtonColor: "#9a8c98",
+    });
+  };
+
   //LOADING/ERROR HANDLING
   if (countries.status === "loading") {
     return <div>Loading...</div>;
@@ -57,10 +71,10 @@ export const Countries = () => {
   // RETURN
   return (
     <div>
-        <div className="search-bar">
-          <TextField label="Search" onChange={handleSearchChange} />
-        </div>
-        <div className="table">
+      <div className="search-bar">
+        <TextField label="Search" onChange={handleSearchChange} />
+      </div>
+      <div className="table">
         <ThemeProvider theme={themeOptions}>
           <table className="table-info">
             <thead className="table-head">
@@ -129,7 +143,11 @@ export const Countries = () => {
                       <td style={{ width: "12%" }}>
                         {country.languages != undefined ? (
                           objectToStringArr(country.languages).map((lang) => {
-                            return <h3 key={lang}>{lang}</h3>;
+                            return (
+                              <li key={lang} className="languages">
+                                {lang}
+                              </li>
+                            );
                           })
                         ) : (
                           <h3>No languages</h3>
@@ -137,36 +155,47 @@ export const Countries = () => {
                       </td>
 
                       <td>
-                        <Button
-                          onClick={(e) =>
-                            handleFavoriteClick(country.name.official)
-                          }
-                          variant="text"
-                          id={country.name.official}
-                        >
+                        <Button variant="text" id={country.name.official}>
                           {country.isFavorite ? (
-                            <FavoriteIcon />
+                            <FavoriteIcon
+                              onClick={(e) =>
+                                handleUnFavoriteClick(country.name.official)
+                              }
+                            />
                           ) : (
-                            <FavoriteBorderIcon />
+                            <FavoriteBorderIcon
+                              onClick={(e) =>
+                                handleFavoriteClick(country.name.official)
+                              }
+                            />
                           )}
                         </Button>
                       </td>
                       <td>
-                        <Button variant="text" id={country.name.official} className="more-info">
-                          <Link to={"/countryInfo/" + country.name.official} className="more-info-text">
-                            More Info
-                            <ArrowForwardIosIcon className="arrow-icon"/>
-                          </Link>
-                        </Button>
+                          <Box color="text.secondary">
+                            <Button
+                              variant="text"
+                              id={country.name.official}
+                              className="more-info"
+                            >
+                              <Link
+                                to={"/countryInfo/" + country.name.official}
+                                className="more-info-text" 
+                              >
+                                More Info
+                                <ArrowForwardIosIcon className="arrow-icon" />
+                              </Link> 
+                            </Button>
+                          </Box>
                       </td>
                     </tr>
                   );
                 })}
             </tbody>
           </table>
-    </ThemeProvider>
-        </div>
+        </ThemeProvider>
       </div>
+    </div>
   );
 };
 

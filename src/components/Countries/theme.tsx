@@ -13,17 +13,18 @@ export const themeOptions = createTheme({
       },
       text: {
         // primary: '#22223b',
-        primary: '#9a8c98'
+        primary: '#9a8c98',
+        secondary: '#4a4e69'
       },
     },
     components: {
       MuiLink: {
         styleOverrides: {
           root: {
-            color: 'white', 
+            color: '#9a8c98', 
             textDecoration: 'none', 
             '&:hover': {
-              textShadow: '1px 1px 2px white',
+              textShadow: '1px 1px 1px #9a8c98',
               fontSize: '1.3rem'
             },
           },
