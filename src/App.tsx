@@ -1,18 +1,16 @@
-import React from 'react'
-import './App.css'
-import {Countries} from './components/Countries/Countries'
-import { Footer } from './components/Header and Footer/Footer'
-import { Header } from './components/Header and Footer/Header'
-
+import { ThemeProvider } from "@emotion/react";
+import "./App.css";
+import { Countries } from "./components/Countries/Countries";
+import { themeOptions } from "./components/Header and Footer/theme";
 
 const App = () => {
   return (
     <div className="App">
-      <Header />
-      < Countries />
-      <Footer />
+      <ThemeProvider theme={themeOptions}>
+        <Countries />
+      </ThemeProvider>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

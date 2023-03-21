@@ -1,42 +1,72 @@
-import { createAsyncThunk, AsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  AsyncThunk,
+  createSlice,
+  current,
+} from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 
 const countriesApi = "https://restcountries.com/v3.1/all";
-const initialState: CountriesState = {
+
+//INITIAL STATES:
+export const initialState: CountriesState = {
   status: "idle",
   error: null,
   countries: [],
 };
-//INTERFACE
-interface CountriesState {
+
+// const favoritesState: Favorite = {
+//   isFavorite: true
+// }
+
+//INTERFACES:
+//Country Interface
+export interface CountriesState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   countries: Country[];
 }
 
-interface Country {
+export interface Country {
   name: {
     common: string;
     official: string;
     native: string;
   };
-  flag: string;
+  flags: {
+    png: string,
+    svg: string,
+    alt: string
+  };
   region: string;
   population: number;
   languages: object;
+  isFavorite: false | true;
 }
 
-
-
-//SLICE
+//COUNTRIESSLICE
 export const countriesSlice = createSlice({
   name: "countries",
   initialState,
   reducers: {
-    // favouriteCountry: (state, action) => {
-    //   state.data.isFavourite = !state.data.isFavourite;
-    // },
-    //showCountries: (state) => state,
+    favoriteCountry: (state, action) => {
+      // console.log("Action Payload");
+      // console.log(action.payload);
+
+      let country: Country = state.countries.find(
+        (country) => country.name.official == action.payload
+      )!;
+
+      // console.log(current(country));
+
+      if (country.isFavorite) {
+        country.isFavorite = false;
+      } else {
+        country.isFavorite = true;
+      }
+
+      // console.log(current(country));
+    }
   },
   extraReducers: (builder) => {
     //FETCHCOUNTRIES CASE
@@ -52,18 +82,18 @@ export const countriesSlice = createSlice({
     builder.addCase(fetchCountries.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message || "Something went wrong";
-    })
+    });
   },
 });
 
 //THUNK
 export const fetchCountries = createAsyncThunk("countries/fetch", async () => {
+  console.log("fetchCountries");
   const response: AxiosResponse<Array<Country>, any> = await axios.get(
     countriesApi
   );
-  console.log(response.data)
   return response.data;
 });
 
-// export const { favouriteCountry } = countriesSlice.actions;
+export const { favoriteCountry} = countriesSlice.actions;
 export default countriesSlice.reducer;
