@@ -27,7 +27,7 @@ export const Countries = () => {
 
   useEffect(() => {
     dispatch(fetchCountries());
-  }, []);
+  }, [dispatch]);
 
   // HANDLER FUNCTIONS
   const handleFavoriteClick = (id: String) => {

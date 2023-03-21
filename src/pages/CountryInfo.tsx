@@ -24,7 +24,7 @@ export const CountryInfo = () => {
 
   useEffect(() => {
     dispatch(fetchCountry());
-  }, []);
+  }, [dispatch]);
 
   if (country === null || country === undefined) {
     return <h4>Loading</h4>;
