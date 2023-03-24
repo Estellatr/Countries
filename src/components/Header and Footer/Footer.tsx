@@ -13,7 +13,8 @@ export const Footer = () => {
   return (
     <div>
       <ThemeProvider theme={lightTheme}>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, 
+    bottom: 0, width: '100%'}}>
           <AppBar position="static">
             <Toolbar>
               <IconButton

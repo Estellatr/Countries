@@ -21,7 +21,6 @@ export const lightTheme = createTheme({
         styleOverrides: {
           root: {
             color: '#f5ede9', 
-            // backgroundColor: '#9a8c98',
             textDecoration: 'none', 
             '&:hover': {
               textShadow: '1px 1px 2px white',
@@ -43,7 +42,6 @@ export const lightTheme = createTheme({
       },
       secondary: {
         main: '#9a8c98',
-        // main: '#121212',
       },
       text: {
         primary: '#9a8c98',
@@ -55,7 +53,6 @@ export const lightTheme = createTheme({
         styleOverrides: {
           root: {
             color: '#f5ede9', 
-            // backgroundColor: '#9a8c98',
             textDecoration: 'none', 
             '&:hover': {
               textShadow: '1px 1px 2px white',

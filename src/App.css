@@ -1,7 +1,14 @@
 .App {
   text-align: center;
+  height: 90vh;
+  overflow-y: scroll;
 }
 
 a{
   text-decoration: none;
 }
+
+/* .body {
+  height: 100vh;
+  overflow: scroll;
+} */

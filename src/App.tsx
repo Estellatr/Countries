@@ -64,6 +64,7 @@ export default function ToggleColorMode() {
   );
 
   return (
+    <div className="body">
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         {theme.palette.mode === "dark" ? (
@@ -89,5 +90,6 @@ export default function ToggleColorMode() {
         )}
       </ThemeProvider>
     </ColorModeContext.Provider>
+    </div>
   );
 }

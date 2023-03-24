@@ -1,0 +1,26 @@
+
+.noFav {
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+.noFav h1:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.favList {
+    height: 100vh;
+}
+
+.favList h1 {
+    font-size: 2rem;
+    padding: 0rem 1rem;
+}
+
+.moreInfo {
+
+}

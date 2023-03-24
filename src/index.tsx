@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import FavoritesToggleColorMode, { Favorites } from "./pages/Favorites";
-import { CountryInfo } from "./pages/CountryInfo";
+import FavoritesToggleColorMode from "./pages/Favorites";
+import CountryInfoToggleColorMode from "./pages/CountryInfo";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import AppToggleColorMode from "./App";
@@ -21,7 +21,7 @@ root.render(
         <Routes>
           <Route path="/" element={<AppToggleColorMode />} />
           <Route path="favourites" element={<FavoritesToggleColorMode />} />
-          <Route path="countryInfo/*" element={<CountryInfo />} />
+          <Route path="countryInfo/*" element={<CountryInfoToggleColorMode />} />
         </Routes>
       </BrowserRouter>
     </Provider>
