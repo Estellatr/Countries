@@ -55,7 +55,7 @@ export const Favorites = ({  }) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              bgcolor: "background.default",
+              bgcolor: "primary",
               color: "text.primary",
               borderRadius: 1,
               p: 3,
