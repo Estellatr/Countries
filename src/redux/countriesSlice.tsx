@@ -15,12 +15,8 @@ export const initialState: CountriesState = {
   countries: [],
 };
 
-// const favoritesState: Favorite = {
-//   isFavorite: true
-// }
 
-//INTERFACES:
-//Country Interface
+//INTERFACE:
 export interface CountriesState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
@@ -82,7 +78,6 @@ export const countriesSlice = createSlice({
 
 //THUNK
 export const fetchCountries = createAsyncThunk("countries/fetch", async () => {
-  console.log("fetchCountries");
   const response: AxiosResponse<Array<Country>, any> = await axios.get(
     countriesApi
   );
